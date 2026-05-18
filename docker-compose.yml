@@ -1,0 +1,17 @@
+services:
+  view:
+    image: eddfish/accounting:latest
+    container_name: accounting
+    ports:
+      - "80:80"
+    depends_on:
+      - forum-service
+  forum-service:
+    image: eddfish/forum-service:latest
+    container_name: forum
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DB_NAME=telran62
+      - MONGO_URI=<db uri>
